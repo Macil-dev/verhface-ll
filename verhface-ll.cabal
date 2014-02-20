@@ -18,3 +18,4 @@ library
   exposed-modules:     Bindings.Verba.ErrorCodes, Bindings.Verba.C, Bindings.Verba.C.Types, Bindings.Verba.C.FFI
   -- other-modules:       
   build-depends:       base ==4.6.*, bytestring ==0.10.*
+  hs-source-dirs:      src
