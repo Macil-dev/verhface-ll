@@ -82,6 +82,11 @@ foreign import stdcall "GetCryptKeysF" c_GetCryptKeysF :: CString           -- ^
 foreign import stdcall "FreeMemory" c_Free_Memory :: forall a. Ptr a -> IO ()
 
 -- * Open keys storage manipulation
+-- | GetAlias
+foreign import stdcall "GetAlias" c_GetAlias :: CString                      -- ^ Base dir
+                                             -> CString                      -- ^ Key ID
+                                             -> CString                      -- ^ Output buffer
+                                             -> IO Word16
 -- | SprList
 foreign import stdcall "SprList" c_SprList :: CString
                                            -> CString
@@ -89,4 +94,22 @@ foreign import stdcall "SprList" c_SprList :: CString
                                            -> Ptr Word16
                                            -> Word8
                                            -> IO Word16
-
+-- | SignSpr
+foreign import stdcall "SignSpr" c_SignSpr :: CString                        -- ^ Base dir
+                                           -> CString                        -- ^ Series
+                                           -> CString                        -- ^ Key ID
+                                           -> Word8                          -- ^ Request type
+                                           -> IO Word16
+-- | CheckSpr
+foreign import stdcall "CheckSpr" c_CheckSpr :: CString
+                                             -> CString
+                                             -> Ptr (Ptr C_SprList)
+                                             -> Ptr Word16
+                                             -> CString
+                                             -> Word8
+                                             -> IO Word16
+-- | ExtractKey
+foreign import stdcall "ExtractKey" c_ExtractKey :: CString                 -- ^ Base dir
+                                                 -> CString                 -- ^ Key ID
+                                                 -> Ptr Word8               -- ^ Output buffer
+                                                 -> IO Word16
