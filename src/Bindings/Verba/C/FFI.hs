@@ -42,11 +42,25 @@ foreign import stdcall "EnCryptFile" c_EnCryptFile :: CString     -- ^ Source fi
                                                    -> Ptr Word16  -- ^ Receivers key ids
                                                    -> CString     -- ^ Key series
                                                    -> IO Word16
+-- | EnCryptFileEx
+foreign import stdcall "EnCryptFileEx" c_EnCryptFileEx :: CString -- ^ Source filename
+                                                       -> CString -- ^ Destination filename
+                                                       -> CString -- ^ Sender key id
+                                                       -> Ptr (Ptr Word8) -- ^ Open keys array
+                                                       -> Word16  -- ^ Open keys array length
+                                                       -> Word32  -- ^ Flags (reserved)
+                                                       -> IO Word16
 -- | DeCryptFile
 foreign import stdcall "DeCryptFile" c_DeCryptFile :: CString    -- ^ Source filename
                                                    -> CString    -- ^ Destination filename
                                                    -> Word16     -- ^ Key id
                                                    -> IO Word16
+-- | DeCryptFileEx
+foreign import stdcall "DeCryptFileEx" c_DeCryptFileEx :: CString    -- ^ Source filename
+                                                       -> CString    -- ^ Destination filename
+                                                       -> CString    -- ^ Key id
+                                                       -> Ptr Word8  -- ^ Public key
+                                                       -> IO Word16
 -- | EnCryptMem
 foreign import stdcall "EnCryptMem" c_EnCryptMem :: Ptr Word8     -- ^ Source buffer
                                                  -> Word32        -- ^ Source buffer length
